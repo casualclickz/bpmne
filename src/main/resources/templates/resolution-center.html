@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Customer</title>
+		<style>
+			* { box-sizing: border-box; font-family: sans-serif; }
+			.header h3 { text-align: center; }
+			.form {margin: 0 auto; width: 40%; padding: 1rem; background:#cacaca;}
+			.field { margin: 1.5rem 0; padding: 0 0.5rem; }
+			.field select, .field input { width: 100%; padding: 0.65rem; }
+			.field label { padding: 0 0.2rem 0.3rem 0.15rem; display:block; }
+			.field input[type="submit"] { font-weight: bold; padding: 0.65rem 2rem; }
+			.field:last-child { margin-top: 3rem; }
+			.field:last-child input { padding: 1rem; }
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h3>Resolution Center</h3>
+		</div>
+		<div>
+			<div class="form">
+				<form method="post" th:object="${kycReport}" th:action="@{/customers/customer/} + *{customerReportId} + '/resolveKYC'">
+					<div class="field">
+						<label for="kyc_decision">Did Customer Pass KYC?</label>
+						<div>
+							<select name="kycDecision" id="kyc_decision">
+								<option value="Yes">Yes</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+					</div>					
+					<div class="field">
+						<input type="submit" value="Submit" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

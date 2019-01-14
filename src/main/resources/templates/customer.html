@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Customer</title>
+		<style>
+			* { box-sizing: border-box; font-family: sans-serif; }
+			.header h3 { text-align: center; }
+			.form {margin: 0 auto; width: 40%; padding: 1rem; background:#cacaca;}
+			.field { margin: 1.5rem 0; padding: 0 0.5rem; }
+			.field input { width: 100%; padding: 0.65rem; }
+			.field label { padding: 0 0.2rem 0.3rem 0.15rem; display:block; }
+			.field input[type="submit"] { font-weight: bold; padding: 0.65rem 2rem; }
+			.field:last-child { margin-top: 3rem; }
+			.field:last-child input { padding: 1rem; }
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h3>Register Customer</h3>
+		</div>
+		<div>
+			<div class="form">
+				<form method="post" th:object="${customer}" th:action="@{/customers}" th:switch="*{status}">
+					<div class="field">
+						<label for="customer_name">Name</label>
+						<div>
+							<input type="text" maxlength="30" size="30" name="customerName" th:value="*{customerName}" id="customer_name" />
+						</div>
+					</div>
+					<div class="field">
+						<label for="address">Address</label>
+						<div>
+							<input type="text" maxlength="50" size="50" name="address" th:value="*{address}" id="address"/>
+						</div>
+					</div>
+					<div class="field">
+						<label for="age">Age</label>
+						<div>
+							<input type="text" maxlength="3" size="3" name="age" th:value="*{age}" id="age"/>
+						</div>
+					</div>
+					<div class="field">
+						<label for="phone">Phone</label>
+						<div>
+							<input type="text" maxlength="11" size="11" name="phone" th:value="*{phone}" id="phone" pattern="^[0-9]{11}"/>
+						</div>
+					</div>
+					
+					<!-- 
+					<div th:case="'New'" class="field">
+					  <label for="age">New Customer</label>
+						<div>
+							<input type="text" maxlength="3" size="3" name="age" th:value="*{age}" id="age"/>
+						</div>
+					</div> -->
+					<!-- 
+					<div th:case="*" class="field"></div> -->
+					
+					<div class="field">
+						<input type="submit" value="Submit" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
